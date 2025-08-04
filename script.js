@@ -45,3 +45,24 @@ form.addEventListener("submit", (e) => {
 
 // Tampilkan laporan saat pertama kali halaman dimuat
 tampilkanLaporan();
+document.getElementById("downloadExcel").addEventListener("click", () => {
+  const semua = JSON.parse(localStorage.getItem("laporan")) || [];
+
+  if (semua.length === 0) {
+    alert("Belum ada laporan untuk didownload.");
+    return;
+  }
+
+  const dataExcel = semua.map(l => ({
+    "Judul": l.judul,
+    "Isi Laporan": l.isi,
+    "Nama Pelapor": l.nama,
+    "Tanggal": l.tanggal
+  }));
+
+  const worksheet = XLSX.utils.json_to_sheet(dataExcel);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan");
+
+  XLSX.writeFile(workbook, "laporan.xlsx");
+});
