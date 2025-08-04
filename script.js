@@ -7,16 +7,24 @@ function simpanLaporan(laporan) {
   localStorage.setItem("laporan", JSON.stringify(laporanSebelumnya));
 }
 
+function hapusLaporan(index) {
+  const semua = JSON.parse(localStorage.getItem("laporan")) || [];
+  semua.splice(index, 1); // hapus 1 item di posisi index
+  localStorage.setItem("laporan", JSON.stringify(semua));
+  tampilkanLaporan();
+}
+
 function tampilkanLaporan() {
   const semua = JSON.parse(localStorage.getItem("laporan")) || [];
   list.innerHTML = "";
-  semua.reverse().forEach((lap) => {
+  semua.forEach((lap, index) => {
     const el = document.createElement("div");
     el.classList.add("laporan-item");
     el.innerHTML = `
       <strong>${lap.judul}</strong><br/>
       <small>${lap.tanggal} - ${lap.nama}</small><br/>
       <p>${lap.isi}</p>
+      <button class="hapus-btn" onclick="hapusLaporan(${index})">🗑️ Hapus</button>
     `;
     list.appendChild(el);
   });
@@ -35,4 +43,5 @@ form.addEventListener("submit", (e) => {
   tampilkanLaporan();
 });
 
+// Tampilkan laporan saat pertama kali halaman dimuat
 tampilkanLaporan();
