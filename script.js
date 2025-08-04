@@ -1,5 +1,6 @@
 const form = document.getElementById("laporanForm");
 const list = document.getElementById("laporanList");
+const downloadBtn = document.getElementById("downloadExcel");
 
 function simpanLaporan(laporan) {
   const laporanSebelumnya = JSON.parse(localStorage.getItem("laporan")) || [];
@@ -9,7 +10,7 @@ function simpanLaporan(laporan) {
 
 function hapusLaporan(index) {
   const semua = JSON.parse(localStorage.getItem("laporan")) || [];
-  semua.splice(index, 1); // hapus 1 item di posisi index
+  semua.splice(index, 1);
   localStorage.setItem("laporan", JSON.stringify(semua));
   tampilkanLaporan();
 }
@@ -43,11 +44,9 @@ form.addEventListener("submit", (e) => {
   tampilkanLaporan();
 });
 
-// Tampilkan laporan saat pertama kali halaman dimuat
-tampilkanLaporan();
-document.getElementById("downloadExcel").addEventListener("click", () => {
+// 📥 Ekspor ke Excel
+downloadBtn.addEventListener("click", () => {
   const semua = JSON.parse(localStorage.getItem("laporan")) || [];
-
   if (semua.length === 0) {
     alert("Belum ada laporan untuk didownload.");
     return;
@@ -66,3 +65,6 @@ document.getElementById("downloadExcel").addEventListener("click", () => {
 
   XLSX.writeFile(workbook, "laporan.xlsx");
 });
+
+// Load saat halaman pertama kali dibuka
+tampilkanLaporan();
