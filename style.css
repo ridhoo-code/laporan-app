@@ -45,12 +45,6 @@ button:hover {
   background: #0056b3;
 }
 
-.laporan-item {
-  background: #f0f0f0;
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 5px;
-}
 .hapus-btn {
   background: #dc3545;
   color: white;
@@ -64,4 +58,8 @@ button:hover {
 
 .hapus-btn:hover {
   background: #b02a37;
+}
+
+#downloadExcel {
+  margin-bottom: 15px;
 }
