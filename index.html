@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Laporan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Form Laporan</h1>
+
+    <form id="laporanForm">
+      <label>Judul:</label>
+      <input type="text" id="judul" required>
+
+      <label>Isi Laporan:</label>
+      <textarea id="isi" rows="4" required></textarea>
+
+      <label>Nama Pelapor:</label>
+      <input type="text" id="nama" required>
+
+      <label>Tanggal:</label>
+      <input type="date" id="tanggal" required>
+
+      <button type="submit">Kirim Laporan</button>
+    </form>
+
+    <h2>📋 Daftar Laporan</h2>
+    <div id="laporanList"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
